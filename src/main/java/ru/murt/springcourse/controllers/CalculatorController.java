@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CalculatorController {
-    int res;
+    double res;
     @GetMapping("/first/calculator")
     public String webCalculator(@RequestParam(value = "a", required = false) int a,
                                 @RequestParam(value = "b", required = false) int b,
@@ -25,8 +25,10 @@ public class CalculatorController {
                 res = a - b;
                 break;
             case "division":
-                res = a / b;
+                res = a / (double)b;
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + action);
         }
         model.addAttribute("messageCal", "Result: " + res);
         return "first/calculator";
