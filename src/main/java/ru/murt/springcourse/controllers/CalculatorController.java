@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CalculatorController {
     double res;
-    @GetMapping("/first/calculator")
+    @GetMapping("/calculator")
     public String webCalculator(@RequestParam(value = "a", required = false) int a,
                                 @RequestParam(value = "b", required = false) int b,
                                 @RequestParam(value = "action", required = false) String action,
@@ -31,6 +31,6 @@ public class CalculatorController {
                 throw new IllegalStateException("Unexpected value: " + action);
         }
         model.addAttribute("messageCal", "Result: " + res);
-        return "first/calculator";
+        return "calculator";
     }
 }
