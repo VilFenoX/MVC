@@ -5,7 +5,8 @@
     <title>Update person</title>
 </head>
 <body>
-
+       // action - действие после нажатия кнопки(переход на страницу),  object - обьект который пришел
+       // c GET запросом
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>

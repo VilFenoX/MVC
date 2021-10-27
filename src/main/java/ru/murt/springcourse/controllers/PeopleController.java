@@ -11,7 +11,7 @@ import ru.murt.springcourse.models.Person;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/people")    // все адреса начинаюся с people
 public class PeopleController {
 
     private PersonDAO personDAO;
@@ -41,13 +41,14 @@ public class PeopleController {
         return "people/new";
     }
 
-    @PostMapping()
+    @PostMapping()   // @ModelAttribute автоматически создает обьект Person и и присваивает
+                        // значения перменным внутри класса
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
         if(bindingResult.hasErrors())
             return "/people/new";
         personDAO.save(person);
-            return "redirect:/people";
+            return "redirect:/people"; // редирект отправляет на указанную страницу
     }
 
     @GetMapping("/{id}/edit")
